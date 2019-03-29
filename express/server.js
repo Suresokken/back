@@ -13,7 +13,8 @@ const con = mysql.createConnection({
   password: "AfL37Tigjs"
 });
 
-router.get('/wines', (req, res) => {
+router.get('/', (req, res) => {
+  if(req.url === "/wines"){
   con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
@@ -21,11 +22,9 @@ router.get('/wines', (req, res) => {
       }
       res.send(wines);
     });
+  }
 });
 
-router.get('/', (req, res) => {
-  res.send("front");
-});
 
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
