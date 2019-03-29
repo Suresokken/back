@@ -13,7 +13,7 @@ const con = mysql.createConnection({
   password: "AfL37Tigjs"
 });
 
-router.get('/', (req, res) => {
+router.get('/wines', (req, res) => {
   con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
