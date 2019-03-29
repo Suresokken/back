@@ -22,6 +22,11 @@ router.get('/wines', (req, res) => {
       res.send(wines);
     });
 });
+
+router.get('/', (req, res) => {
+  res.send("front");
+});
+
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
