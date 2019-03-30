@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 var cors = require('cors');
-
+app.use(cors());
 const router = express.Router();
 
 const con = mysql.createConnection({
@@ -28,7 +28,7 @@ router.get('/wines', (req, res) => {
 });
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
-app.use(cors());
+
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);
 
