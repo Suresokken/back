@@ -23,9 +23,9 @@ router.get('/', (req, res) => {
       res.send(wines);
     });
   }
-  
+
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+router.get('/another', (req, res) => res.json({ route: req.originalUrl, body: req.param}));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
