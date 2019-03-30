@@ -14,7 +14,10 @@ const con = mysql.createConnection({
 });
 
 router.get('/', (req, res) => {
-  console.log(req);
+  res.send("test");
+  
+});
+router.get('/another', (req, res) => {
   con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
@@ -23,12 +26,10 @@ router.get('/', (req, res) => {
       res.send(wines);
     });
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);
-//app.use('/.netlify/functions/server/another', router);  // path must route to lambda
 
 module.exports = app;
 module.exports.handler = serverless(app);
