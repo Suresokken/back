@@ -13,27 +13,21 @@ const con = mysql.createConnection({
   password: "AfL37Tigjs"
 });
 
-function getWines(){
- const wines = con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
+router.get('/', (req, res) => {
+  console.log(req);
+  con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
         throw error
       }
+      res.send(wines);
     });
-    return wines;
-}
-
-router.get('/', (req, res) => {
-  res.send("ss");
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.get('/wines', (res, req) => {
- res.send(wines());
-});
 
 module.exports = app;
 module.exports.handler = serverless(app);
