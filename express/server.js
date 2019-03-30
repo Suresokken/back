@@ -14,10 +14,7 @@ const con = mysql.createConnection({
 });
 
 router.get('/', (req, res) => {
-  res.send("test");
-  
-});
-router.get('/another', (req, res) => {
+  if(req.body === "another"){
   con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
@@ -25,7 +22,10 @@ router.get('/another', (req, res) => {
       }
       res.send(wines);
     });
+  }
+  
 });
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
