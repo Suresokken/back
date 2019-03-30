@@ -24,7 +24,15 @@ router.get('/', (req, res) => {
     });
   
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl}));
+router.get('/another', (req, res) => {
+  con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
+    if (error) {
+        console.error('An error occurred while executing the query')
+        throw error
+      }
+      res.send(wines);
+    });
+});
 router.post('/', (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
