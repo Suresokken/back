@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
     });
   }
   else {
-    res.send(req.param + " " + req.body)
+    res.send(req.param + " - " + req.body + " - " + req.params + " - " + req.path)
   }
 
 });
