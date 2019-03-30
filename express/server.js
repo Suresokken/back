@@ -14,17 +14,9 @@ const con = mysql.createConnection({
 });
 
 router.get('/', (req, res) => {
-
-  con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
-    if (error) {
-        console.error('An error occurred while executing the query')
-        throw error
-      }
-      res.send(wines);
-    });
-  
+  res.send("Welcome to nothing");
 });
-router.get('/another', (req, res) => {
+router.get('/wines', (req, res) => {
   con.query('SELECT * FROM sql7284796.wines', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
