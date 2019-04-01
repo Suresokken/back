@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   res.send("Welcome to nothing");
 });
 router.get('/wines', (req, res) => {
-  con.query('select sql7284796.wines.*, sql7284796.`lines`.* from sql7284796.wines, sql7284796.`lines` '+
+  con.query('select sql7284796.wines.id as wineid, sql7284796.wines.type, sql7284796.`lines`.* from sql7284796.wines, sql7284796.`lines` '+
   'where wines.id = `lines`.wineid and active = TRUE', (error, wines, fields) => {
     if (error) {
         console.error('An error occurred while executing the query')
